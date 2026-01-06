@@ -1,0 +1,1341 @@
+[
+  {
+    "en": "concern",
+    "zh": "n. 擔心、憂慮；v. 使..擔心、關係到、影響到",
+    "pos": "n/v",
+    "group": "concern",
+    "forms": [
+      {
+        "w": "concerning = about = regarding",
+        "pos": "prep",
+        "zh": "關於.."
+      },
+      {
+        "w": "concerned",
+        "pos": "adj",
+        "zh": "擔心的、有關的"
+      }
+    ],
+    "synonyms": [
+      "matter(問題、事情)、worry(使擔心)、involve(牽涉到..)"
+    ],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "concern + about/over",
+        "zh": "關於..的憂慮/擔心"
+      },
+      {
+        "pattern": "questions + concerning",
+        "zh": "關於..的問題"
+      }
+    ],
+    "note": "concern當n，表示問題、事情時，可以換成matter，當v，表示使擔心，可以換成worry，表示情況或行動對某人造成影響，可用involve",
+    "example": ""
+  },
+  {
+    "en": "attire",
+    "zh": "服裝、衣著",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "code",
+    "zh": "規範，慣例；密碼",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "policy",
+    "zh": "政策、規定、保險單",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "comply",
+    "zh": "遵守、遵從",
+    "pos": "v",
+    "group": "",
+    "forms": [
+      {
+        "w": "compliance",
+        "pos": "n",
+        "zh": "遵守"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "comply + with",
+        "zh": "遵守、遵從(規則、要求等)"
+      },
+      {
+        "pattern": "observe",
+        "zh": "遵守(規則、要求)、觀察"
+      },
+      {
+        "pattern": "obey",
+        "zh": "遵從(指示等)、服從(人)"
+      },
+      {
+        "pattern": "fulfill",
+        "zh": "滿足(條件等)"
+      }
+    ],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "regulation",
+    "zh": "規定",
+    "pos": "n",
+    "group": "",
+    "forms": [
+      {
+        "w": "regulate = contral",
+        "pos": "v",
+        "zh": "管理、控制"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "safety regulation",
+        "zh": "安全規定"
+      },
+      {
+        "pattern": "customs regulation",
+        "zh": "海關規定"
+      }
+    ],
+    "note": "常用複數型regulations",
+    "example": ""
+  },
+  {
+    "en": "exception",
+    "zh": "例外",
+    "pos": "n",
+    "group": "exception",
+    "forms": [
+      {
+        "w": "expectional",
+        "pos": "adj",
+        "zh": "例外的、傑出的"
+      },
+      {
+        "w": "expectionlly",
+        "pos": "adv",
+        "zh": "例外地、非常地"
+      },
+      {
+        "w": "expect",
+        "pos": "prep",
+        "zh": "除..之外"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "with the exception of",
+        "zh": "除了..以外"
+      },
+      {
+        "pattern": "with very few exceptions",
+        "zh": "幾乎沒有例外"
+      }
+    ],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "adhere",
+    "zh": "遵守、堅持",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "adhere to + policies/rules/standards",
+        "zh": "遵守政策/規則/標準"
+      }
+    ],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "severely",
+    "zh": "嚴格地、嚴重地",
+    "pos": "adv",
+    "group": "",
+    "forms": [
+      {
+        "w": "severe",
+        "pos": "adj",
+        "zh": "嚴重的、嚴格的"
+      }
+    ],
+    "synonyms": [
+      "stemly(嚴格地)"
+    ],
+    "antonyms": [
+      "leniently(寬大地)"
+    ],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "refrain",
+    "zh": "克制、抑制",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "refrain from",
+        "zh": "抑制..、避免做.."
+      }
+    ],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "permission",
+    "zh": "允許、許可",
+    "pos": "n",
+    "group": "",
+    "forms": [
+      {
+        "w": "permit",
+        "pos": "v",
+        "zh": "允許"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "access",
+    "zh": "n. 使用權、接近；通道 v. 接近、到達",
+    "pos": "n/v",
+    "group": "access",
+    "forms": [
+      {
+        "w": "accessible",
+        "pos": "adj",
+        "zh": "可接近的、可利用的"
+      },
+      {
+        "w": "accessibility",
+        "pos": "n",
+        "zh": "易接近性"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "have access to",
+        "zh": "有接近/使用..的權限"
+      },
+      {
+        "pattern": "access the documents",
+        "zh": "存取文件"
+      },
+      {
+        "pattern": "access(使用權、接近)，為不可數名詞",
+        "zh": ""
+      },
+      {
+        "pattern": "approach(對學問等的)接近、處理的方法，為可數名詞需加an",
+        "zh": ""
+      }
+    ],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "approach",
+    "zh": "n. 接近方法、處理方法 v. 接近、靠近",
+    "pos": "n/v",
+    "group": "access",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "throuhgly",
+    "zh": "徹底地；完全地，非常",
+    "pos": "adv",
+    "group": "",
+    "forms": [
+      {
+        "w": "through",
+        "pos": "adj",
+        "zh": "徹底的，完全的"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "revise",
+    "zh": "修訂，變更(意見、計畫等)",
+    "pos": "v",
+    "group": "",
+    "forms": [
+      {
+        "w": "revision",
+        "pos": "n",
+        "zh": "修訂、變更"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "approval",
+    "zh": "批准、認可",
+    "pos": "n",
+    "group": "",
+    "forms": [
+      {
+        "w": "approve",
+        "pos": "v",
+        "zh": "認可，反義字: reject, turn down"
+      }
+    ],
+    "synonyms": [
+      "permission(許可、認可)"
+    ],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "obtain approval (for)",
+        "zh": "獲得(對於..)的批准"
+      }
+    ],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "aquarium",
+    "zh": "水族館、水族箱",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "portrait",
+    "zh": "n. 肖像，畫像;人像照片 adj. 縱向",
+    "pos": "n/adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": "https://dictionary.cambridge.org/zht/%E8%A9%9E%E5%85%B8/%E8%8B%B1%E8%AA%9E-%E6%BC%A2%E8%AA%9E-%E7%B9%81%E9%AB%94/portrait"
+  },
+  {
+    "en": "reissue",
+    "zh": "重印;重新發行;再版",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [
+      "reprint"
+    ],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": "The recording has been reissued to celebrate the conductor's 80th birthday."
+  },
+  {
+    "en": "run A by B",
+    "zh": "向B徵求對於A的意見",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "find (something) out",
+    "zh": "找出，查明；得知、發現…的錯事（或罪行）",
+    "pos": "phr. v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "campaign",
+    "zh": "n. （尤指政治、商業或軍事的）專門活動，運動 v. 從事活動；開展運動；發起運動",
+    "pos": "n/v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "questionnaire",
+    "zh": "問卷；情況調查表",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": "Visitors to the country have been asked to fill in a detailed questionnaire."
+  },
+  {
+    "en": "tempt",
+    "zh": "引誘，誘惑",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [
+      {
+        "pattern": "tempt to",
+        "zh": ""
+      }
+    ],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "sorely",
+    "zh": "極其;非常",
+    "pos": "adv",
+    "group": "",
+    "forms": [
+      {
+        "w": "",
+        "pos": "",
+        "zh": ""
+      }
+    ],
+    "synonyms": [
+      "very"
+    ],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "anticipate",
+    "zh": "預期，期望;預料、採取行動來防止;先發制人",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "just around the corner",
+    "zh": "即將到來",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "pick someone/something out",
+    "zh": "辨認出，分辨出；認真挑選出、強調;使突出;使顯著",
+    "pos": "phr. v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "fragile",
+    "zh": "易損壞的；易碎的；脆弱的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "critic",
+    "zh": "批評者、評論家(尤指電影、書籍、音樂等的)",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "come by (somewhere)",
+    "zh": "順道拜訪",
+    "pos": "phr. v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": "I'll come by (the office/your house) one day this week and we can have a chat."
+  },
+  {
+    "en": "forklift",
+    "zh": "堆高機",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "address",
+    "zh": "n. 地址、演說 v. 給..寫信、處理",
+    "pos": "n/v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": "https://dictionary.cambridge.org/zht/%E8%A9%9E%E5%85%B8/%E8%8B%B1%E8%AA%9E-%E6%BC%A2%E8%AA%9E-%E7%B9%81%E9%AB%94/address"
+  },
+  {
+    "en": "controversial",
+    "zh": "有爭議的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "nature",
+    "zh": "特性、本性、大自然",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "infrastructure",
+    "zh": "基礎建設",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "municipal",
+    "zh": "市政的;市立的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "provoke",
+    "zh": "引起(尤指負面反應)、激怒",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "forum",
+    "zh": "討論會、論壇",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "resistant",
+    "zh": "抗拒的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "lively",
+    "zh": "生氣勃勃的、鮮豔的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "perishable",
+    "zh": "（食物）易腐爛的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "current",
+    "zh": "現行的、潮流",
+    "pos": "n/adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "debate",
+    "zh": "辯論",
+    "pos": "n/v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "surprising",
+    "zh": "令人意外的，讓人吃驚的，出人意料的",
+    "pos": "adj",
+    "group": "",
+    "forms": [
+      {
+        "w": "surprise",
+        "pos": "n",
+        "zh": "意想不到的事物、驚訝"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "expenditure",
+    "zh": "花費",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": "It's part of a drive to cut government expenditure."
+  },
+  {
+    "en": "substantially",
+    "zh": "在很大程度上、實質上、大量地",
+    "pos": "adv",
+    "group": "",
+    "forms": [
+      {
+        "w": "substantial",
+        "pos": "adj",
+        "zh": "大的；可觀的；價值巨大的；重大的"
+      },
+      {
+        "w": "substantiality",
+        "pos": "n",
+        "zh": "實質性、實體"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "by means of",
+    "zh": "透過..方法",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "ever since",
+    "zh": "自..以後",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "in light of",
+    "zh": "考慮到",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "vacant lot",
+    "zh": "空地",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "allocate",
+    "zh": "分配;分派",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "yet",
+    "zh": "conj. 但是 adv. 仍然",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "transaction",
+    "zh": "交易",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "provide",
+    "zh": "提供",
+    "pos": "",
+    "group": "",
+    "forms": [
+      {
+        "w": "provided = providing",
+        "pos": "conj",
+        "zh": "假設、如果"
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "thriving",
+    "zh": "興旺的，繁榮的",
+    "pos": "adj",
+    "group": "",
+    "forms": [
+      {
+        "w": "thrive",
+        "pos": "v",
+        "zh": "茁壯成長；興旺，繁榮"
+      }
+    ],
+    "synonyms": [
+      "flourish v. 茁壯成長；繁榮；蓬勃發展",
+      "prosper v. （人或企業）成功;（尤指經濟上）繁榮，昌盛"
+    ],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "insist",
+    "zh": "堅持說，強調;堅決要求",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "venue",
+    "zh": "場地",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "ample",
+    "zh": "充足的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "in compliance with",
+    "zh": "遵守",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "result from something",
+    "zh": "因…發生，由於…導致",
+    "pos": "phr. v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "owing to",
+    "zh": "由於",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "surplus",
+    "zh": "剩餘的、過剩的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "interest rate",
+    "zh": "利率",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "logistics",
+    "zh": "物流",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "tentatively",
+    "zh": "試驗性地、暫時地",
+    "pos": "adv",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "courier",
+    "zh": "快遞",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "the majority of",
+    "zh": "大多數",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "first-class",
+    "zh": "頭等艙",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "as a result of",
+    "zh": "因此",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "in case of",
+    "zh": "如果發生",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "workforce",
+    "zh": "人力",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "inquire",
+    "zh": "詢問，打聽",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "quota",
+    "zh": "限額，配額",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "be eager to do",
+    "zh": "渴望做某件事..",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "innovate",
+    "zh": "改革;創新",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "crew",
+    "zh": "全體工作人員、當（船員），在船上工作",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "footage",
+    "zh": "（尤指表現一個事件的）一段影片，片段",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "renovate",
+    "zh": "修復，翻新",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "intensive",
+    "zh": "密集的，集中的;加強的;深入的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "contemporary",
+    "zh": "當代的;現代的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "marketplace",
+    "zh": "市集、市場",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "apparel",
+    "zh": "服裝、服飾",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "terrain",
+    "zh": "地形、地域",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "wear and tear",
+    "zh": "磨損",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "senior center",
+    "zh": "樂齡中心",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "fray",
+    "zh": "磨損、惱火",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "tailor",
+    "zh": "n. 裁縫 v. 專門製作",
+    "pos": "n/v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "long-lasting",
+    "zh": "長久的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "take place",
+    "zh": "舉行",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "perk",
+    "zh": "(薪資外的)福利",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "stipend",
+    "zh": "津貼",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "haul",
+    "zh": "距離(旅程、路)",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "flaw",
+    "zh": "n. 缺陷 v. 使有瑕疵",
+    "pos": "n/v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  }
+]

@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TOEIC 單字複習器（四選一＋用法＋同反義）</title>
+  <style>
+    :root { --bg:#f6f7fb; --card:#fff; --text:#111; --muted:#666; --line:#e7e7ee; }
+    body{ margin:0; font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif; background:var(--bg); color:var(--text); }
+    .wrap{ max-width:980px; margin:0 auto; padding:18px; }
+    .grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap:14px; }
+    @media (max-width: 920px){ .grid{ grid-template-columns:1fr; } }
+    .card{ background:var(--card); border-radius:16px; box-shadow:0 10px 24px rgba(0,0,0,.06); padding:16px; }
+    h1{ font-size:18px; margin:0 0 10px; }
+    h2{ font-size:14px; margin:16px 0 8px; color:#222; }
+    .meta{ display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 10px; }
+    .pill{ font-size:13px; padding:6px 10px; border-radius:999px; background:#eef; border:1px solid #dde; }
+    .pill.ok{ background:#e7ffe9; border-color:#ccefd1; }
+    .pill.bad{ background:#ffe7e7; border-color:#f2c9c9; }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:4px;}
+    select, input[type="text"]{ border:1px solid #ddd; border-radius:12px; padding:10px 12px; font-size:14px; background:#fff; }
+    textarea{ width:100%; min-height:160px; border:1px solid #ddd; border-radius:12px; padding:10px 12px; font-size:13px; }
+    button{ border:0; border-radius:12px; padding:10px 14px; font-weight:800; cursor:pointer; }
+    button.ghost{ background:#eee; }
+    button.line{ background:#fff; border:1px solid #ddd; }
+    button.primary{ background:#1f4fff; color:#fff; }
+    .qword{ font-size:34px; font-weight:900; letter-spacing:.3px; margin:10px 0 6px; }
+    .qsub{ color:var(--muted); font-size:13px; margin-bottom:10px; }
+    .opt{ width:100%; text-align:left; background:#f2f4ff; padding:14px; margin:10px 0; }
+    .opt:hover{ filter:brightness(.99); }
+    .opt[disabled]{ cursor:default; opacity:.96; }
+    .okbg{ background:#e7ffe9 !important; }
+    .badbg{ background:#ffe7e7 !important; }
+    .detail{ border-top:1px solid var(--line); margin-top:12px; padding-top:12px; }
+    .kv{ display:grid; grid-template-columns: 120px 1fr; gap:8px 12px; font-size:13px; }
+    .k{ color:#444; font-weight:800; }
+    .v{ color:#111; }
+    .small{ font-size:12px; color:var(--muted); line-height:1.45; }
+    details{ margin-top:12px; }
+    summary{ cursor:pointer; font-weight:900; }
+    .tag{ display:inline-block; padding:3px 8px; border-radius:999px; background:#f3f3f8; border:1px solid #e3e3ee; font-size:12px; margin-right:6px; margin-top:6px;}
+    .list{ font-size:13px; color:#111; }
+    .hr{ height:1px; background:var(--line); margin:10px 0; }
+    .warn{ color:#a40000; font-weight:900; }
+    code{ background:#f2f2f2; padding:2px 6px; border-radius:6px; }
+    .hotkeys{
+    margin:10px 0 12px;
+    padding:10px 12px;
+    border:1px dashed #d7d7e6;
+    background:#fafbff;
+    border-radius:12px;
+    }
+    .hotkeys kbd{
+    display:inline-block;
+    padding:2px 8px;
+    border:1px solid #d9d9e6;
+    border-bottom-width:2px;
+    border-radius:8px;
+    background:#fff;
+    font-size:12px;
+    font-weight:800;
+    margin:0 4px;
+    }
+    .hotkeys .line{ margin:6px 0; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="grid">
+    <!-- Left: Quiz -->
+    <div class="card">
+      <h1>TOEIC 單字複習器</h1>
+
+      <div class="row">
+        <label class="small">題型：</label>
+        <select id="mode">
+          <option value="en2zh">英 → 中（四選一）</option>
+          <option value="usage">用法題（介系詞/搭配 四選一）</option>
+          <option value="syn">同義字題（四選一）</option>
+          <option value="ant">反義字題（四選一）</option>
+          <option value="mixed">混合（輪流出題）</option>
+        </select>
+
+        <label class="small">出題範圍：</label>
+        <select id="scope">
+          <option value="all">全部</option>
+          <option value="wrong">錯題優先</option>
+        </select>
+        <label class="small">出題模式：</label>
+        <select id="sessionMode">
+          <option value="random">隨機（Random）</option>
+          <option value="round">刷一輪（Round，不重複）</option>
+        </select>
+
+        <button class="ghost" id="next">下一題</button>
+      </div>
+
+      <div class="meta">
+        <div class="pill">題數：<span id="st_total">0</span></div>
+        <div class="pill ok">答對：<span id="st_correct">0</span></div>
+        <div class="pill bad">答錯：<span id="st_wrong">0</span></div>
+        <div class="pill">連對：<span id="st_streak">0</span></div>
+      </div>
+      <div class="small" id="roundProgress" style="display:none; margin-bottom:8px;">
+        Round 進度：第 <b><span id="roundNow">0</span></b> / <b><span id="roundTotal">0</span></b> 題
+      </div>
+
+
+      <div class="qword" id="qword">—</div>
+      <div class="qsub" id="qsub">—</div>
+
+      <div id="options"></div>
+
+      <div class="detail" id="detail" style="display:none;">
+        <h2>本題卡片資訊（答完才顯示）</h2>
+        <div class="kv">
+          <div class="k">單字</div><div class="v" id="d_en">—</div>
+          <div class="k">詞性</div><div class="v" id="d_pos">—</div>
+          <div class="k">中文</div><div class="v" id="d_zh">—</div>
+          <div class="k">詞型</div><div class="v" id="d_forms">—</div>
+          <div class="k">同義字</div><div class="v" id="d_syn">—</div>
+          <div class="k">反義字</div><div class="v" id="d_ant">—</div>
+          <div class="k">用法</div><div class="v" id="d_usage">—</div>
+          <div class="k">註記</div><div class="v" id="d_note">—</div>
+          <div class="k">例句</div><div class="v" id="d_ex">—</div>
+        </div>
+        <div class="hr"></div>
+        <div class="small">
+          考試重點：不必追求「會寫作文」，但要能用詞性／介系詞／固定搭配把錯的選項砍掉。
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Bank / Admin -->
+    <div class="card">
+      <h1>題庫管理</h1>
+
+      <div class="row">
+        <button class="primary" id="exportBtn">匯出題庫 JSON</button>
+        <button class="line" id="resetStats">重置統計</button>
+        <button class="line" id="resetAll"><span class="warn">清空題庫</span></button>
+        <button class="primary" id="backupAll">一鍵備份（vocab + stats）</button>
+
+        <label class="line" style="display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid #ddd; cursor:pointer;">
+          匯入 stats.json（恢復錯題）
+          <input id="importStatsFile" type="file" accept="application/json" style="display:none;">
+        </label>
+    </div>
+      <details open>
+        <summary>匯入/編輯題庫（JSON）</summary>
+        <p class="small">
+          建議先輸入 30–50 筆常考字。欄位：<code>forms/synonyms/antonyms/usage</code> 可逐步補齊。
+          你可以先按 <code>載入示範題庫</code> 看格式。
+        </p>
+          <div class="hotkeys">
+          <div class="line"><b>快捷鍵（新增單字區）</b></div>
+          <div class="line">英文欄：<kbd>Enter</kbd> 跳到「詞性」</div>
+          <div class="line">詞性下拉：<kbd>Enter</kbd> 跳到「中文」</div>
+          <div class="line">中文欄：<kbd>Ctrl</kbd> + <kbd>Enter</kbd> 直接「加入題庫」＋清空表單＋游標回英文</div>
+          <div class="line">任一欄位：<kbd>Esc</kbd> 清空表單並回到英文</div>
+          <div class="line">全域：<kbd>Alt</kbd> + <kbd>N</kbd> 下一題</div>
+          <div class="small">（提醒：中文輸入法組字時，建議用 Ctrl+Enter 送出，較不會誤觸）</div>
+        </div>
+        <textarea id="bankArea"></textarea>
+        <div class="row">
+          <button class="primary" id="saveBank">儲存題庫</button>
+          <button class="line" id="loadDemo">載入示範題庫</button>
+        </div>
+      </details>
+      <details open>
+  <summary>新增單字（用表單自動產生模板）</summary>
+  <p class="small">
+    你只要填基本資料，按「加入題庫」就會自動轉成 JSON 並存入題庫。<br>
+    <b>forms</b> 用「一行一筆」：<code>severe|adj|嚴重的；嚴格的</code><br>
+    <b>usage</b> 用「一行一筆」：<code>refrain from + V-ing/N|避免做…</code><br>
+    <b>同義/反義</b> 用逗號分隔：<code>sternly, strictly</code>
+  </p>
+
+    <div class="row">
+      <button class="primary" id="addEntryTop" type="button">加入題庫</button>
+      <span class="small">（快速加入，只填 en / zh 也可以）</span>
+    </div>
+
+<div class="row">
+  <input id="f_en" type="text" placeholder="英文單字 (en) 例如: refrain" style="flex:1; min-width:240px;">
+  <div style="flex:1; min-width:240px;">
+  <select id="f_pos_select" style="width:100%;">
+    <option value="">詞性（可留空）</option>
+    <option value="n">n（名詞）</option>
+    <option value="v">v（動詞）</option>
+    <option value="adj">adj（形容詞）</option>
+    <option value="adv">adv（副詞）</option>
+    <option value="prep">prep（介系詞）</option>
+    <option value="conj">conj（連接詞）</option>
+    <option value="pron">pron（代名詞）</option>
+    <option value="det">det（限定詞）</option>
+    <option value="interj">interj（感嘆詞）</option>
+    <option value="num">num（數詞）</option>
+    <option value="aux">aux（助動詞）</option>
+
+    <option value="n/v">n/v（名詞／動詞）</option>
+    <option value="adj/adv">adj/adv（形容詞／副詞）</option>
+    <option value="n/adj">n/adj（名詞／形容詞）</option>
+    <option value="v/adj">v/adj（動詞／形容詞）</option>
+
+    <option value="phr. v">phr. v（片語動詞）</option>
+    <option value="other">其他（自行輸入）…</option>
+  </select>
+
+  <input id="f_pos_custom" type="text"
+         placeholder="自訂詞性（例如: n/v/adj 或 modal/aux 等）"
+         style="width:100%; margin-top:8px; display:none;">
+</div>
+
+</div>
+
+<div class="row">
+  <input id="f_zh" type="text" placeholder="中文解釋 (zh) 例如: 克制；避免" style="flex:1; min-width:240px;">
+</div>
+
+<div class="row" style="align-items:flex-start;">
+  <div style="flex:1; min-width:200px;">
+    <select id="f_group_select" style="width:100%;">
+      <option value="">（選擇 group）</option>
+    </select>
+    <div class="small" style="margin-top:6px;">
+      沒有你要的 group？在右邊輸入自訂：
+    </div>
+  </div>
+
+  <input id="f_group_custom" type="text" placeholder="自訂 group（例如: p45 或 G_VERB_PREP_01）" style="flex:1; min-width:200px;">
+
+  <textarea id="f_forms" placeholder="例如：
+severe|adj|嚴重的；嚴格的
+severity|n|嚴重性；嚴格性"></textarea>
+
+  <div class="row">
+    <input id="f_syn" type="text" placeholder="同義字 synonyms（逗號分隔）例如: sternly, strictly" style="flex:1; min-width:240px;">
+    <input id="f_ant" type="text" placeholder="反義字 antonyms（逗號分隔）例如: leniently" style="flex:1; min-width:240px;">
+  </div>
+
+  <h2>用法 usage（每行一筆：pattern|中文）</h2>
+  <textarea id="f_usage" placeholder="例如：
+refrain from + V-ing/N|避免做…
+be severely punished|受到嚴厲處罰"></textarea>
+
+  <h2>Note / Example</h2>
+  <input id="f_note" type="text" placeholder="note（出題重點/限制條件）" style="width:100%; margin-bottom:10px;">
+  <input id="f_example" type="text" placeholder="example（例句）" style="width:100%;">
+
+  <div class="row" style="margin-top:12px;">
+    <button class="primary" id="addEntryBtn">加入題庫</button>
+    <button class="line" id="clearFormBtn">清空表單</button>
+  </div>
+</details>
+
+
+      <details>
+        <summary>錯題本（Top 50）</summary>
+        <div class="small" id="wrongList">（尚無）</div>
+      </details>
+
+      <details>
+        <summary>資料格式模板</summary>
+        <div class="small">
+<pre>[
+  {
+    "en": "refrain",
+    "zh": "克制；抑制；避免",
+    "pos": "v",
+    "group": "verb-prep",
+    "forms": [],
+    "synonyms": ["avoid"],
+    "antonyms": [],
+    "usage": [
+      {"pattern":"refrain from + V-ing/N","zh":"克制/避免做…"}
+    ],
+    "note": "TOEIC 常考：refrain 是不及物動詞，後面必須用 from。",
+    "example": "Guards should refrain from making personal calls during a shift."
+  }
+]</pre>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================
+   Storage keys
+========================= */
+const LS_BANK  = "toeic_vocab_bank_v3";
+const LS_STATS = "toeic_vocab_stats_v3";
+
+/* =========================
+   Demo bank（含你書上那頁：severely/refrain/permission/access）
+========================= */
+const DEMO_BANK = [
+  // 你之前的示範字（保留）
+  {
+    en:"relevant", zh:"相關且切題的", pos:"adj", group:"relation",
+    forms:[{w:"relevance", zh:"關聯性", pos:"n"}],
+    synonyms:["pertinent","applicable"],
+    antonyms:[],
+    usage:[{pattern:"relevant to + N", zh:"對…切題/相關"},{pattern:"relevant information", zh:"切題資訊"}],
+    note:"不只是 related；偏『切題/有用』。題目常要你選最合理/最切題的。",
+    example:"Please provide relevant documents for the audit."
+  },
+  {
+    en:"related", zh:"有關聯的", pos:"adj", group:"relation",
+    forms:[{w:"relate", zh:"使有關聯", pos:"v"},{w:"relation", zh:"關係", pos:"n"}],
+    synonyms:["connected","associated"],
+    antonyms:[],
+    usage:[{pattern:"related to + N", zh:"與…有關"},{pattern:"health-related", zh:"與健康相關的"}],
+    note:"只表示『有關』，不保證切題；跟 relevant 常成對出題。",
+    example:"The report is related to our marketing strategy."
+  },
+  {
+    en:"relative", zh:"相對的", pos:"adj", group:"compare",
+    forms:[{w:"relatively", zh:"相對地", pos:"adv"}],
+    synonyms:[],
+    antonyms:[],
+    usage:[{pattern:"relative to + N", zh:"相對於…"}],
+    note:"必須有比較基準（relative to…）。沒有基準用這字很怪/常錯。",
+    example:"Costs rose relative to last year."
+  },
+  {
+    en:"comparative", zh:"比較的；比較級的", pos:"adj", group:"compare",
+    forms:[{w:"compare", zh:"比較", pos:"v"},{w:"comparison", zh:"比較", pos:"n"}],
+    synonyms:[],
+    antonyms:[],
+    usage:[{pattern:"comparative study/analysis", zh:"比較研究/分析"}],
+    note:"偏『拿 A 跟 B 比』的方法或性質；不是每個『相對』都能用 comparative。",
+    example:"We conducted a comparative analysis of two plans."
+  },
+
+  // ====== 你書上那一頁（核心） ======
+
+  {
+    en:"severely",
+    zh:"嚴格地；嚴重地",
+    pos:"adv",
+    group:"severity",
+    forms:[
+      {w:"severe", zh:"嚴重的；嚴格的", pos:"adj"},
+      {w:"severity", zh:"嚴重性；嚴格性", pos:"n"}
+    ],
+    synonyms:["sternly"],
+    antonyms:["leniently"],
+    usage:[
+      {pattern:"be severely punished", zh:"受到嚴厲處罰"},
+      {pattern:"be severely damaged", zh:"嚴重受損"}
+    ],
+    note:"severely 是副詞，常搭配 punished / criticized / damaged 等。反義：leniently（寬大地）。",
+    example:"Those who share company data with outside parties will be severely punished."
+  },
+  {
+    en:"refrain",
+    zh:"克制；抑制；避免",
+    pos:"v",
+    group:"verb-prep",
+    forms:[],
+    synonyms:["avoid"],
+    antonyms:[],
+    usage:[
+      {pattern:"refrain from + V-ing/N", zh:"克制/避免做…"}
+    ],
+    note:"出題重點：refrain 是不及物動詞，後面必須用 from。",
+    example:"Guards should refrain from making personal calls during a shift."
+  },
+  {
+    en:"permission",
+    zh:"允許；許可",
+    pos:"n",
+    group:"permission",
+    forms:[
+      {w:"permit", zh:"允許；許可", pos:"v/n"}
+    ],
+    synonyms:["authorization","approval"],
+    antonyms:["prohibition","ban"],
+    usage:[
+      {pattern:"permission to + V", zh:"做…的許可"},
+      {pattern:"give/grant permission to + 人", zh:"給某人許可"}
+    ],
+    note:"TOEIC 常見 permission to do；permission 多為不可數（a permission 不常用）。",
+    example:"The CEO gave managers permission to hold a weekend workshop."
+  },
+  {
+    en:"access",
+    zh:"使用權；通道；接近；存取",
+    pos:"n/v",
+    group:"access",
+    forms:[
+      {w:"accessible", zh:"可接近的；可取得的", pos:"adj"},
+      {w:"accessibility", zh:"可近性；易取得性", pos:"n"}
+    ],
+    synonyms:["entry","admission"],
+    antonyms:["restriction","denial"],
+    usage:[
+      {pattern:"gain/have access to + N", zh:"取得/擁有…的使用權（名詞要接 to）"},
+      {pattern:"access + N", zh:"存取/取得（動詞直接接受詞）"}
+    ],
+    note:"出題重點：access（名詞）+ to；access（動詞）後面直接接受詞。",
+    example:"Only authorized personnel may gain access to client files."
+  }
+];
+
+/* =========================
+   Stats + Wrong weighting
+========================= */
+let stats = loadStats(); // {total, correct, wrong, streak, wrongSet:{en:count}}
+let bank  = [];  // array of entries
+
+let currentQ = null;
+let locked = false;
+let roundPool = [];
+let roundCursor = 0;
+
+function buildPoolByScope(){
+  const scope = el("scope").value;
+
+  if(scope === "wrong"){
+    const wrongWords = new Set(Object.keys(stats.wrongSet || {}));
+    const pool = bank.filter(e => wrongWords.has(e.en));
+
+    // ✅ 有錯題就用錯題池（不管幾題）
+    if(pool.length > 0) return pool;
+
+    // ✅ 沒錯題才退回全部（也可以改成提示）
+    return bank.slice();
+  }
+
+  return bank.slice();
+}
+
+
+function resetRoundPool(){
+  roundPool = shuffle(buildPoolByScope());
+  roundCursor = 0;
+  renderRoundProgress();
+}
+
+function pickFromRound(){
+  if(roundPool.length === 0 || roundCursor >= roundPool.length){
+    resetRoundPool(); // 做完一輪就自動再洗一輪
+  }
+  return roundPool[roundCursor++];
+}
+
+const el = (id)=>document.getElementById(id);
+
+function saveStats(){ localStorage.setItem(LS_STATS, JSON.stringify(stats)); }
+function loadStats(){
+  try{
+    const raw = localStorage.getItem(LS_STATS);
+    if(!raw) return {total:0, correct:0, wrong:0, streak:0, wrongSet:{}};
+    const s = JSON.parse(raw);
+    if(!s.wrongSet) s.wrongSet = {};
+    return s;
+  }catch{ return {total:0, correct:0, wrong:0, streak:0, wrongSet:{}}; }
+}
+
+async function loadBankAsync(){
+  // 1️⃣ 先讀 localStorage（你用 UI 新增的資料都在這）
+  try{
+    const raw = localStorage.getItem(LS_BANK);
+    if(raw){
+      const b = JSON.parse(raw);
+      if(Array.isArray(b) && b.length >= 4){
+        return b;
+      }
+    }
+  }catch(e){
+    // ignore
+  }
+
+  // 2️⃣ 再嘗試從外部 vocab.json 載入
+  try{
+    const res = await fetch("./vocab.json", { cache: "no-store" });
+    if(res.ok){
+      const b = await res.json();
+      const vb = validateBank(b);
+
+      // 第一次載入就同步存進 localStorage
+      localStorage.setItem(LS_BANK, JSON.stringify(vb));
+      return vb;
+    }
+  }catch(e){
+    // ignore
+  }
+
+  // 3️⃣ 都失敗才用 DEMO
+  return structuredClone(DEMO_BANK);
+}
+
+
+function saveBank(b){ localStorage.setItem(LS_BANK, JSON.stringify(b)); }
+
+/* =========================
+   Utilities
+========================= */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function normalizeEntry(e){
+  return {
+    en: String(e.en ?? "").trim(),
+    zh: String(e.zh ?? "").trim(),
+    pos: String(e.pos ?? "").trim(),
+    group: String(e.group ?? "").trim(),
+    forms: Array.isArray(e.forms)? e.forms : [],
+    synonyms: Array.isArray(e.synonyms)? e.synonyms : [],
+    antonyms: Array.isArray(e.antonyms)? e.antonyms : [],
+    usage: Array.isArray(e.usage)? e.usage : [],
+    note: String(e.note ?? "").trim(),
+    example: String(e.example ?? "").trim()
+  };
+}
+
+function validateBank(b){
+  if(!Array.isArray(b)) throw new Error("題庫必須是陣列 Array。");
+  if(b.length < 4) throw new Error("題庫至少 4 筆，才做得出四選一（建議 30+）。");
+  for(const [i,raw] of b.entries()){
+    const e = normalizeEntry(raw);
+    if(!e.en || !e.zh) throw new Error(`第 ${i+1} 筆缺少 en 或 zh。`);
+  }
+  return b.map(normalizeEntry);
+}
+
+function renderStats(){
+  el("st_total").textContent = stats.total;
+  el("st_correct").textContent = stats.correct;
+  el("st_wrong").textContent = stats.wrong;
+  el("st_streak").textContent = stats.streak;
+  renderWrongList();
+}
+
+function renderRoundProgress(){
+  const box = document.getElementById("roundProgress");
+  const nowEl = document.getElementById("roundNow");
+  const totalEl = document.getElementById("roundTotal");
+  const mode = document.getElementById("sessionMode")?.value || "random";
+
+  if(mode !== "round"){
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "block";
+  const shown = roundCursor === 0 && roundPool.length > 0 ? 1 : roundCursor;
+  nowEl.textContent = Math.min(shown, roundPool.length);
+  totalEl.textContent = roundPool.length;
+}
+
+
+function renderWrongList(){
+  const entries = Object.entries(stats.wrongSet).sort((a,b)=>b[1]-a[1]).slice(0,50);
+  const box = el("wrongList");
+  if(entries.length===0){ box.textContent="（尚無）"; return; }
+  box.innerHTML = entries.map(([en,c])=>`• ${escapeHtml(en)}（錯 ${c} 次）`).join("<br>");
+}
+
+function escapeHtml(s){
+  return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+}
+
+
+
+/* =========================
+   Question generation
+========================= */
+function pickQuestionEntry(){
+  const sessionMode = el("sessionMode")?.value || "random";
+  const scope = el("scope").value;
+
+  // ✅ Round：刷一輪、不重複
+  if(sessionMode === "round"){
+    // 若題庫剛被改過或第一次進來，roundPool 可能還沒建
+    if(roundPool.length === 0) resetRoundPool();
+    return pickFromRound();
+  }
+
+  // ✅ Random：你原本的行為（錯題加權）
+  if(scope === "wrong"){
+    const weights = bank.map(e => 1 + (stats.wrongSet[e.en]||0)*2);
+    const totalW = weights.reduce((a,b)=>a+b,0);
+    let r = Math.random()*totalW;
+    for(let i=0;i<bank.length;i++){
+      r -= weights[i];
+      if(r<=0) return bank[i];
+    }
+  }
+  return pickRandom(bank);
+}
+
+function pickDistractors(target, fieldGetter, count=3){
+  const sameGroup = bank.filter(e => e.en !== target.en && target.group && e.group === target.group);
+  const samePos   = bank.filter(e => e.en !== target.en && target.pos && e.pos === target.pos);
+
+  let pool = sameGroup.length >= count ? sameGroup
+          : (shuffle(sameGroup).concat(shuffle(samePos))).filter((v,i,a)=>a.findIndex(x=>x.en===v.en)===i);
+
+  if(pool.length < count){
+    pool = pool.concat(bank.filter(e=>e.en!==target.en));
+    pool = pool.filter((v,i,a)=>a.findIndex(x=>x.en===v.en)===i);
+  }
+
+  const picked = [];
+  const seen = new Set([fieldGetter(target)]);
+  for(const e of shuffle(pool)){
+    const val = fieldGetter(e);
+    if(!val || seen.has(val)) continue;
+    picked.push(val);
+    seen.add(val);
+    if(picked.length===count) break;
+  }
+
+  while(picked.length < count){
+    picked.push("（以上皆非）");
+  }
+  return picked;
+}
+
+function pickModeForMixed(entry){
+  const candidates = ["en2zh"];
+  if(entry.usage && entry.usage.length) candidates.push("usage");
+  if(entry.synonyms && entry.synonyms.length) candidates.push("syn");
+  if(entry.antonyms && entry.antonyms.length) candidates.push("ant");
+  return pickRandom(candidates);
+}
+
+function makeQuestion(){
+  locked = false;
+  el("detail").style.display = "none";
+
+  const mode = el("mode").value;
+  const entry = pickQuestionEntry();
+  const actualMode = (mode === "mixed") ? pickModeForMixed(entry) : mode;
+
+  if(actualMode === "usage"){
+    if(!entry.usage || entry.usage.length === 0) return makeQuestionFallback(entry);
+    const u = pickRandom(entry.usage);
+    const correct = u.pattern;
+    const wrongs = pickDistractors(entry, (e)=> (e.usage && e.usage.length) ? pickRandom(e.usage).pattern : "", 3);
+    const options = shuffle([correct, ...wrongs]);
+    currentQ = { type:"usage", entry, prompt: entry.en, sub:"選出最常見/最合理的用法（介系詞/搭配）", correct, options };
+  }
+  else if(actualMode === "syn"){
+    if(!entry.synonyms || entry.synonyms.length === 0) return makeQuestionFallback(entry);
+    const correct = pickRandom(entry.synonyms);
+    const wrongs = pickDistractors(entry, (e)=> (e.synonyms && e.synonyms.length) ? pickRandom(e.synonyms) : "", 3);
+    const options = shuffle([correct, ...wrongs]);
+    currentQ = { type:"syn", entry, prompt: entry.en, sub:"選出最接近的同義字（排錯用）", correct, options };
+  }
+  else if(actualMode === "ant"){
+    if(!entry.antonyms || entry.antonyms.length === 0) return makeQuestionFallback(entry);
+    const correct = pickRandom(entry.antonyms);
+    const wrongs = pickDistractors(entry, (e)=> (e.antonyms && e.antonyms.length) ? pickRandom(e.antonyms) : "", 3);
+    const options = shuffle([correct, ...wrongs]);
+    currentQ = { type:"ant", entry, prompt: entry.en, sub:"選出最相反的反義字（排錯用）", correct, options };
+  }
+  else {
+    const correct = entry.zh;
+    const wrongs = pickDistractors(entry, (e)=>e.zh, 3);
+    const options = shuffle([correct, ...wrongs]);
+    currentQ = { type:"en2zh", entry, prompt: entry.en, sub:"選出最符合的中文意思（同 group 會提高干擾）", correct, options };
+  }
+
+  renderQuestion();
+  renderRoundProgress();
+}
+
+function makeQuestionFallback(entry){
+  const correct = entry.zh;
+  const wrongs = pickDistractors(entry, (e)=>e.zh, 3);
+  const options = shuffle([correct, ...wrongs]);
+  currentQ = { type:"en2zh", entry, prompt: entry.en, sub:"（此字資料不足以出用法/同反義題，暫用英→中題）", correct, options };
+  renderQuestion();
+}
+
+function renderQuestion(){
+  el("qword").textContent = currentQ.prompt;
+  el("qsub").textContent  = currentQ.sub;
+
+  const box = el("options");
+  box.innerHTML = "";
+  currentQ.options.forEach(opt=>{
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.textContent = opt;
+    b.onclick = ()=>answer(opt, b);
+    box.appendChild(b);
+  });
+}
+
+function showDetail(entry){
+  el("d_en").textContent = entry.en || "—";
+  el("d_pos").textContent = entry.pos || "—";
+  el("d_zh").textContent = entry.zh || "—";
+  el("d_forms").innerHTML = renderForms(entry.forms);
+  el("d_syn").innerHTML = renderList(entry.synonyms);
+  el("d_ant").innerHTML = renderList(entry.antonyms);
+  el("d_usage").innerHTML = renderUsage(entry.usage);
+  el("d_note").textContent = entry.note || "—";
+  el("d_ex").textContent = entry.example || "—";
+  el("detail").style.display = "block";
+}
+
+function renderForms(forms){
+  if(!forms || forms.length===0) return "—";
+  return forms.map(f=>{
+    const w = escapeHtml(f.w ?? "");
+    const zh = escapeHtml(f.zh ?? "");
+    const pos = escapeHtml(f.pos ?? "");
+    return `<span class="tag">${w}${pos?` (${pos})`:""}${zh?`：${zh}`:""}</span>`;
+  }).join(" ");
+}
+function renderUsage(usage){
+  if(!usage || usage.length===0) return "—";
+  return usage.map(u=>{
+    const p = escapeHtml(u.pattern ?? "");
+    const zh = escapeHtml(u.zh ?? "");
+    return `<div class="list">• <b>${p}</b>${zh?` — ${zh}`:""}</div>`;
+  }).join("");
+}
+function renderList(arr){
+  if(!arr || arr.length===0) return "—";
+  return arr.map(s=>`<span class="tag">${escapeHtml(s)}</span>`).join(" ");
+}
+
+/* =========================
+   Answer handling
+========================= */
+function answer(choice, btn){
+  if(locked) return;
+  locked = true;
+
+  const buttons = Array.from(document.querySelectorAll(".opt"));
+  buttons.forEach(b=>b.disabled = true);
+
+  stats.total += 1;
+
+  const correct = (choice === currentQ.correct);
+  if(correct){
+    btn.classList.add("okbg");
+    stats.correct += 1;
+    stats.streak += 1;
+  }else{
+    btn.classList.add("badbg");
+    stats.wrong += 1;
+    stats.streak = 0;
+    stats.wrongSet[currentQ.entry.en] = (stats.wrongSet[currentQ.entry.en] || 0) + 1;
+
+    buttons.forEach(b=>{
+      if(b.textContent === currentQ.correct) b.classList.add("okbg");
+    });
+  }
+
+  saveStats();
+  renderStats();
+
+  // 若目前是 Round + wrong，錯題集合變了，必須重建 pool
+  if(
+    el("sessionMode")?.value === "round" &&
+    el("scope")?.value === "wrong"
+  ){
+    resetRoundPool();
+  }
+  showDetail(currentQ.entry);
+}
+
+/* =========================
+   Admin: import/export/reset
+========================= */
+function refreshBankArea(){
+el("bankArea").value = JSON.stringify(bank, null, 2);
+}
+
+el("saveBank").onclick = ()=>{
+  try{
+    const parsed = JSON.parse(el("bankArea").value);
+    bank = validateBank(parsed);
+    saveBank(bank);
+    alert("題庫已儲存。");
+    resetRoundPool();
+    makeQuestion();
+  }catch(e){
+    alert("匯入失敗：\n" + e.message);
+  }
+};
+
+el("loadDemo").onclick = ()=>{
+  bank = structuredClone(DEMO_BANK);
+  saveBank(bank);
+  refreshBankArea();
+  refreshGroupDropdown();
+  alert("已載入示範題庫（包含你書上那頁的 4 個字）。");
+  resetRoundPool();
+  makeQuestion();
+};
+
+el("exportBtn").onclick = ()=>{
+  const data = JSON.stringify(bank, null, 2);
+  navigator.clipboard?.writeText(data).then(()=>{
+    alert("已複製題庫 JSON 到剪貼簿（也可在文字框內手動複製）。");
+  }).catch(()=>{
+    alert("剪貼簿權限失敗：請在題庫文字框手動複製。");
+  });
+};
+
+el("resetStats").onclick = ()=>{
+  if(!confirm("確定重置統計與錯題本？")) return;
+  stats = {total:0, correct:0, wrong:0, streak:0, wrongSet:{}};
+  saveStats();
+  renderStats();
+};
+
+el("resetAll").onclick = ()=>{
+  if(!confirm("這會清空題庫（不可復原）。確定？")) return;
+  bank = [];
+  saveBank(bank);
+  refreshBankArea();
+  resetRoundPool();
+  alert("題庫已清空。請匯入新的 JSON。");
+};
+
+el("next").onclick = ()=>makeQuestion();
+el("mode").onchange = ()=>makeQuestion();
+el("scope").onchange = ()=>{
+  resetRoundPool();
+  makeQuestion();
+};
+
+el("sessionMode").onchange = ()=>{
+  resetRoundPool();
+  makeQuestion();
+};
+
+
+function parseCommaList(s){
+  if(!s) return [];
+  return s.split(",")
+    .map(x=>x.trim())
+    .filter(Boolean);
+}
+
+// forms: 每行 word|pos|zh
+function parseForms(text){
+  const lines = (text || "").split("\n").map(l=>l.trim()).filter(Boolean);
+  const out = [];
+  for(const line of lines){
+    const parts = line.split("|").map(x=>x.trim());
+    const w = parts[0] || "";
+    if(!w) continue;
+    out.push({
+      w,
+      pos: parts[1] || "",
+      zh: parts[2] || ""
+    });
+  }
+  return out;
+}
+
+// usage: 每行 pattern|zh
+function parseUsage(text){
+  const lines = (text || "").split("\n").map(l=>l.trim()).filter(Boolean);
+  const out = [];
+  for(const line of lines){
+    const parts = line.split("|").map(x=>x.trim());
+    const pattern = parts[0] || "";
+    if(!pattern) continue;
+    out.push({
+      pattern,
+      zh: parts[1] || ""
+    });
+  }
+  return out;
+}
+
+function clearForm(){
+  ["f_en","f_zh","f_pos_select","f_pos_custom","f_group_select","f_group_custom","f_forms","f_syn","f_ant","f_usage","f_note","f_example"].forEach(id=>{
+    const node = document.getElementById(id);
+    if(node) node.value = "";
+  });
+}
+
+function addEntryFromForm(){
+  const en = document.getElementById("f_en").value.trim();
+  const zh = document.getElementById("f_zh").value.trim();
+  const pos = getPosValueFromUI();
+  const group = getGroupValueFromUI();
+
+  if(!en || !zh){
+    alert("至少要填 en（英文）和 zh（中文解釋）。");
+    return;
+  }
+  // 防呆：避免同 en 重複（你也可以改成允許覆蓋）
+  const existsIdx = bank.findIndex(e => (e.en || "").toLowerCase() === en.toLowerCase());
+  if(existsIdx !== -1){
+    const ok = confirm(`題庫已經有 "${bank[existsIdx].en}"，要用這筆資料覆蓋它嗎？`);
+    if(!ok) return;
+  }
+
+  const forms = parseForms(document.getElementById("f_forms").value);
+  const synonyms = parseCommaList(document.getElementById("f_syn").value);
+  const antonyms = parseCommaList(document.getElementById("f_ant").value);
+  const usage = parseUsage(document.getElementById("f_usage").value);
+  const note = document.getElementById("f_note").value.trim();
+  const example = document.getElementById("f_example").value.trim();
+
+  const entry = {
+    en, zh, pos, group,
+    forms,
+    synonyms,
+    antonyms,
+    usage,
+    note,
+    example
+  };
+
+  if(existsIdx !== -1){
+    bank[existsIdx] = entry;   // 覆蓋
+  }else{
+    bank.push(entry);          // 新增
+  }
+
+  saveBank(bank);
+  refreshBankArea();
+  refreshGroupDropdown();
+  alert("已加入題庫並儲存。");
+  makeQuestion();
+  clearForm();
+  resetRoundPool();
+}
+
+document.getElementById("addEntryBtn")?.addEventListener("click", addEntryFromForm);
+document.getElementById("addEntryTop")?.addEventListener("click", addEntryFromForm);
+document.getElementById("clearFormBtn")?.addEventListener("click", clearForm);
+
+function uniqueGroupsFromBank(){
+  const set = new Set();
+  for(const e of bank){
+    const g = (e.group || "").trim();
+    if(g) set.add(g);
+  }
+  return Array.from(set).sort((a,b)=>a.localeCompare(b));
+}
+
+function refreshGroupDropdown(){
+  const sel = document.getElementById("f_group_select");
+  if(!sel) return;
+
+  const current = sel.value; // preserve selection if possible
+  const groups = uniqueGroupsFromBank();
+
+  sel.innerHTML = `<option value="">（選擇 group）</option>` +
+    groups.map(g => `<option value="${escapeHtml(g)}">${escapeHtml(g)}</option>`).join("");
+
+  // Restore selection if still exists
+  if(groups.includes(current)) sel.value = current;
+}
+
+function getGroupValueFromUI(){
+  const sel = document.getElementById("f_group_select")?.value?.trim() || "";
+  const custom = document.getElementById("f_group_custom")?.value?.trim() || "";
+  // 自訂優先（避免你選了舊 group 但其實想新建）
+  return custom || sel;
+}
+
+function getPosValueFromUI(){
+  const sel = document.getElementById("f_pos_select")?.value?.trim() || "";
+  const custom = document.getElementById("f_pos_custom")?.value?.trim() || "";
+  return (sel === "other") ? custom : sel;
+}
+
+document.getElementById("f_pos_select")?.addEventListener("change", ()=>{
+  const sel = document.getElementById("f_pos_select").value;
+  const box = document.getElementById("f_pos_custom");
+  if(!box) return;
+  box.style.display = (sel === "other") ? "block" : "none";
+  if(sel !== "other") box.value = "";
+});
+
+
+function downloadTextFile(filename, text){
+  const blob = new Blob([text], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+
+
+document.getElementById("backupAll")?.addEventListener("click", ()=>{
+  try{
+    // 題庫：用目前記憶體的 bank（包含你剛新增的字）
+    const vb = validateBank(bank);
+    const vocabText = JSON.stringify(vb, null, 2);
+
+    // 統計：用 localStorage 裡的 stats（最準）
+    const statsRaw = localStorage.getItem(LS_STATS) || JSON.stringify(stats || {});
+
+    // 固定檔名：不加日期（每次下載會覆蓋你下載資料夾裡同名檔）
+    downloadTextFile("vocab.json", vocabText);
+    downloadTextFile("stats.json", statsRaw);
+
+    alert("已備份：vocab.json（題庫）＋ stats.json（錯題狀態）");
+  }catch(e){
+    alert("備份失敗：\n" + (e?.message || e));
+  }
+});
+
+document.getElementById("importStatsFile")?.addEventListener("change", async (ev)=>{
+  const file = ev.target.files?.[0];
+  if(!file) return;
+
+  try{
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+
+    if(!parsed || typeof parsed !== "object") throw new Error("stats.json 格式不正確");
+    if(!parsed.wrongSet || typeof parsed.wrongSet !== "object") parsed.wrongSet = {};
+
+    // 完整覆蓋：恢復錯題「次數」與狀態
+    stats = {
+      total: Number(parsed.total || 0),
+      correct: Number(parsed.correct || 0),
+      wrong: Number(parsed.wrong || 0),
+      streak: Number(parsed.streak || 0),
+      wrongSet: parsed.wrongSet
+    };
+
+    saveStats();
+    if(typeof renderStats === "function") renderStats();
+
+    alert("已匯入 stats.json，錯題狀態已恢復。");
+  }catch(e){
+    alert("匯入失敗：\n" + (e?.message || e));
+  }finally{
+    ev.target.value = ""; // 允許同檔案重選也觸發
+  }
+});
+
+function focusId(id){
+  const node = document.getElementById(id);
+  if(node) node.focus();
+}
+
+// 避免中文輸入法組字時 Enter 觸發
+function isImeComposing(ev){
+  return ev.isComposing || ev.keyCode === 229;
+}
+
+function wireKeyboardFlow(){
+  const en = document.getElementById("f_en");
+  const zh = document.getElementById("f_zh");
+  const posSel = document.getElementById("f_pos_select");
+  const posCus = document.getElementById("f_pos_custom");
+  const gSel = document.getElementById("f_group_select");
+  const gCus = document.getElementById("f_group_custom");
+
+  // 英文 Enter → 詞性下拉
+  en?.addEventListener("keydown", (ev)=>{
+    if(isImeComposing(ev)) return;
+    if(ev.key === "Enter"){
+      ev.preventDefault();
+      focusId("f_pos_select");
+    }
+    if(ev.key === "Escape"){
+      ev.preventDefault();
+      clearForm();
+      focusId("f_en");
+    }
+    if(ev.ctrlKey && ev.key === "Enter"){
+      ev.preventDefault();
+      addEntryFromForm();
+      focusId("f_en");
+    }
+  });
+
+  // 詞性下拉：Enter → 中文（或其他自訂）
+  posSel?.addEventListener("keydown", (ev)=>{
+    if(isImeComposing(ev)) return;
+    if(ev.key === "Enter"){
+      ev.preventDefault();
+      const v = posSel.value;
+      if(v === "other"){
+        focusId("f_pos_custom");
+      }else{
+        focusId("f_zh");
+      }
+    }
+    if(ev.key === "Escape"){
+      ev.preventDefault();
+      clearForm();
+      focusId("f_en");
+    }
+    if(ev.ctrlKey && ev.key === "Enter"){
+      ev.preventDefault();
+      addEntryFromForm();
+      focusId("f_en");
+    }
+  });
+
+  // 詞性「其他」自訂：Enter → 中文
+  posCus?.addEventListener("keydown", (ev)=>{
+    if(isImeComposing(ev)) return;
+    if(ev.key === "Enter"){
+      ev.preventDefault();
+      focusId("f_zh");
+    }
+    if(ev.key === "Escape"){
+      ev.preventDefault();
+      clearForm();
+      focusId("f_en");
+    }
+    if(ev.ctrlKey && ev.key === "Enter"){
+      ev.preventDefault();
+      addEntryFromForm();
+      focusId("f_en");
+    }
+  });
+
+  // 中文：Ctrl+Enter → 直接加入；Enter → group（你若想填）
+  zh?.addEventListener("keydown", (ev)=>{
+    if(isImeComposing(ev)) return;
+
+    if(ev.ctrlKey && ev.key === "Enter"){
+      ev.preventDefault();
+      addEntryFromForm();   // 你 addEntryFromForm 裡已經 clearForm() 了
+      focusId("f_en");
+      return;
+    }
+
+    if(ev.key === "Enter"){
+      ev.preventDefault();
+      focusId("f_group_select");
+    }
+
+    if(ev.key === "Escape"){
+      ev.preventDefault();
+      clearForm();
+      focusId("f_en");
+    }
+  });
+
+  // group 下拉：Enter → group 自訂
+  gSel?.addEventListener("keydown", (ev)=>{
+    if(isImeComposing(ev)) return;
+    if(ev.key === "Enter"){
+      ev.preventDefault();
+      focusId("f_group_custom");
+    }
+    if(ev.key === "Escape"){
+      ev.preventDefault();
+      clearForm();
+      focusId("f_en");
+    }
+    if(ev.ctrlKey && ev.key === "Enter"){
+      ev.preventDefault();
+      addEntryFromForm();
+      focusId("f_en");
+    }
+  });
+
+  // group 自訂：Ctrl+Enter → 加入
+  gCus?.addEventListener("keydown", (ev)=>{
+    if(isImeComposing(ev)) return;
+    if(ev.ctrlKey && ev.key === "Enter"){
+      ev.preventDefault();
+      addEntryFromForm();
+      focusId("f_en");
+    }
+    if(ev.key === "Escape"){
+      ev.preventDefault();
+      clearForm();
+      focusId("f_en");
+    }
+  });
+
+  // 全域快捷鍵：Alt+N 下一題（可選）
+  document.addEventListener("keydown", (ev)=>{
+    if(isImeComposing(ev)) return;
+    if(ev.altKey && (ev.key === "n" || ev.key === "N")){
+      ev.preventDefault();
+      makeQuestion();
+    }
+  });
+}
+
+// 初始化後綁定（確保 DOM 都在）
+wireKeyboardFlow();
+
+
+
+
+/* =========================
+   Init
+========================= */
+(async function init(){
+  try{
+    // 1) 永遠先讀 vocab.json（你的「總題庫」）
+    const res = await fetch("./vocab.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("抓不到 vocab.json（請確認用 Live Server 開、且檔案同資料夾）");
+
+    const fileBank = validateBank(await res.json());
+
+    // 2) 用檔案題庫當作目前題庫，並覆蓋 localStorage（避免被舊資料蓋住）
+    bank = fileBank;
+    saveBank(bank);
+
+  }catch(e){
+    // 如果 vocab.json 真的讀不到，才退回 DEMO（避免整個不能用）
+    bank = structuredClone(DEMO_BANK);
+    saveBank(bank);
+    alert("注意：目前無法讀取 vocab.json，所以暫用示範題庫。\n原因： " + e.message);
+  }
+
+  // 3) 正常渲染
+  refreshBankArea();
+  refreshGroupDropdown();
+  renderStats();
+  resetRoundPool();
+  makeQuestion();
+})();
+
+</script>
+</body>
+</html>
