@@ -2739,5 +2739,119 @@
     "usage": [],
     "note": "",
     "example": ""
+  },
+  {
+    "en": "landscape",
+    "zh": "n. 景觀 v. 景觀美化",
+    "pos": "n/v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "for instance",
+    "zh": "例如",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "apparent",
+    "zh": "顯而易見的、表面上的",
+    "pos": "adj",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "responsive",
+    "zh": "反應積極的；反應敏捷的",
+    "pos": "adj",
+    "group": "",
+    "forms": [
+      {
+        "w": "responsible",
+        "pos": "adj",
+        "zh": "負責..、掌管.."
+      }
+    ],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "cavity",
+    "zh": "空隙;洞;腔、蛀牙",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "botanic garden",
+    "zh": "植物園",
+    "pos": "n",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "tropic",
+    "zh": "熱帶地區、回歸線",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "inhabit",
+    "zh": "居住於、棲息",
+    "pos": "v",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
+  },
+  {
+    "en": "state",
+    "zh": "n. 狀況、州 v. 聲明 adj. 州的",
+    "pos": "",
+    "group": "",
+    "forms": [],
+    "synonyms": [],
+    "antonyms": [],
+    "usage": [],
+    "note": "",
+    "example": ""
   }
 ]
